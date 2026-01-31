@@ -1,0 +1,285 @@
+#include <SPI.h>
+#include <MFRC522.h>
+#include <ESP32Servo.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+// WiFi
+const char* ssid = "Hoichimi";
+const char* password = "12345678";
+
+// Server PHP
+const char* serverURL = "http://10.253.23.114/parking/logic.php";
+
+// ==== ESP32 Pin Definitions ====
+// RFID 1 (cổng vào)
+#define SS_IN      5
+#define RST_IN     4
+
+// RFID 2 (cổng ra)
+#define SS_OUT     13
+#define RST_OUT    14
+
+// Servo
+#define SERVO_IN   2
+#define SERVO_OUT  33
+
+// Buzzer
+#define BUZZER_PIN 15
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+MFRC522 rfidIn(SS_IN, RST_IN);
+MFRC522 rfidOut(SS_OUT, RST_OUT);
+
+Servo servoIn;
+Servo servoOut;
+
+// ==== Số chỗ trống ====
+int carSlots = 5;     // Ô tô
+int bikeSlots = 8;    // Xe máy
+
+String parkedCars[5];
+String parkedBikes[8];
+
+unsigned long lastReadTimeIn = 0;
+unsigned long lastReadTimeOut = 0;
+String lastRFIDIn = "";
+String lastRFIDOut = "";
+const unsigned long debounceTime = 3000;
+
+// ==== Servo control ====
+struct ServoGate {
+  Servo* servo;
+  unsigned long openTime;
+  bool isOpen;
+};
+ServoGate gateIn, gateOut;
+const unsigned long gateDuration = 2000;
+
+void setup() {
+  Serial.begin(115200);
+
+  SPI.begin();
+  rfidIn.PCD_Init();
+  rfidOut.PCD_Init();
+
+  servoIn.attach(SERVO_IN);
+  servoOut.attach(SERVO_OUT);
+  servoIn.write(0);
+  servoOut.write(0);
+
+  gateIn = {&servoIn, 0, false};
+  gateOut = {&servoOut, 0, false};
+
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Smart Parking");
+  lcd.setCursor(0, 1);
+  lcd.print("Connecting...");
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("WiFi Connected");
+  delay(1000);
+
+  updateLCD();
+}
+
+void loop() {
+  handleServo(gateIn);
+  handleServo(gateOut);
+
+  handleRFID(rfidIn, lastRFIDIn, lastReadTimeIn, "IN", gateIn);
+  handleRFID(rfidOut, lastRFIDOut, lastReadTimeOut, "OUT", gateOut);
+}
+
+// ===================== MAIN RFID HANDLER =====================
+void handleRFID(MFRC522 &reader, String &lastRFID, unsigned long &lastTime, String gate, ServoGate &servoGate) {
+  if (!reader.PICC_IsNewCardPresent()) return;
+  if (!reader.PICC_ReadCardSerial()) return;
+
+  String rfid = getRFID(reader);
+  rfid = rfid.toUpperCase();
+
+  unsigned long now = millis();
+  if (rfid == lastRFID && now - lastTime < debounceTime) {
+    return;
+  }
+
+  lastRFID = rfid;
+  lastTime = now;
+
+  Serial.println("\n📥 " + gate + " RFID: " + rfid);
+
+  lcd.setCursor(0, 0);
+  lcd.print(gate + ": " + rfid + "   "); // thêm khoảng trắng xóa cũ
+
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    String checkData = "rfid=" + rfid + "&status=CHECK";
+    int checkResponse = http.POST(checkData);
+
+    if (checkResponse > 0) {
+      String response = http.getString();
+      response.trim();
+
+      Serial.println("📤 Server: " + response);
+
+      String vehicleType = "car";
+      if (response.indexOf("motorbike") >= 0) vehicleType = "motorbike";
+
+      if (response.indexOf("VALID") >= 0) {
+        bool isParked = isRFIDParked(rfid, vehicleType);
+
+        if (isParked) { 
+          handleExit(rfid, vehicleType, servoGate);
+        } 
+        else {
+          handleEntry(rfid, vehicleType, servoGate);
+        }
+      }
+      else {
+        lcd.setCursor(0, 1);
+        lcd.print("❌ Invalid Card  ");
+        buzzBuzzer(1000);
+      }
+    }
+    http.end();
+  }
+
+  updateLCD();
+  reader.PICC_HaltA();
+  reader.PCD_StopCrypto1();
+}
+
+// ===================== PARKING LOGIC =====================
+void handleEntry(String rfid, String type, ServoGate &servoGate) {
+  bool hasSlot = (type == "car") ? (carSlots > 0) : (bikeSlots > 0);
+
+  if (!hasSlot) {
+    lcd.setCursor(0, 1);
+    lcd.print("❌ FULL SLOT     ");
+    buzzBuzzer(2000);
+    return;
+  }
+
+  lcd.setCursor(0, 1);
+  lcd.print("Welcome!        ");
+  buzzBuzzer(300);
+  openGate(servoGate);
+
+  if (type == "car") carSlots--;
+  else bikeSlots--;
+
+  addParkedRFID(rfid, type);
+  logAction(rfid, "in", type);
+}
+
+void handleExit(String rfid, String type, ServoGate &servoGate) {
+  lcd.setCursor(0, 1);
+  lcd.print("See you!        ");
+  buzzBuzzer(300);
+  openGate(servoGate);
+
+  if (type == "car") carSlots++;
+  else bikeSlots++;
+
+  removeParkedRFID(rfid, type);
+  logAction(rfid, "out", type);
+}
+
+// ===================== HARDWARE FUNCTIONS =====================
+String getRFID(MFRC522 &reader) {
+  String rfid = "";
+  for (byte i = 0; i < reader.uid.size; i++) {
+    if (reader.uid.uidByte[i] < 0x10) rfid += "0";
+    rfid += String(reader.uid.uidByte[i], HEX);
+  }
+  return rfid;
+}
+
+// Mở cổng không blocking
+void openGate(ServoGate &gate) {
+  gate.servo->write(90);
+  gate.openTime = millis();
+  gate.isOpen = true;
+}
+
+// Cập nhật servo
+void handleServo(ServoGate &gate) {
+  if (gate.isOpen && millis() - gate.openTime >= gateDuration) {
+    gate.servo->write(0);
+    gate.isOpen = false;
+  }
+}
+
+void buzzBuzzer(unsigned int duration) {
+  digitalWrite(BUZZER_PIN, HIGH);
+  delay(duration);
+  digitalWrite(BUZZER_PIN, LOW);
+}
+
+void updateLCD() {
+  lcd.setCursor(0, 1);
+  lcd.print("Oto:" + String(carSlots) + " Xe:" + String(bikeSlots) + " ");
+}
+
+// ===================== PARKING LIST =====================
+bool isRFIDParked(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+
+  for (int i = 0; i < size; i++)
+    if (arr[i] == rfid) return true;
+
+  return false;
+}
+
+void addParkedRFID(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+
+  for (int i = 0; i < size; i++)
+    if (arr[i] == "") {
+      arr[i] = rfid;
+      return;
+    }
+}
+
+void removeParkedRFID(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+
+  for (int i = 0; i < size; i++)
+    if (arr[i] == rfid) {
+      arr[i] = "";
+      return;
+    }
+}
+
+void logAction(String rfid, String status, String vehicleType) {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    String postData = "rfid=" + rfid + "&status=" + status + "&vehicle_type=" + vehicleType;
+    http.POST(postData);
+    http.end();
+  }
+}

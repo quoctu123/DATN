@@ -1,0 +1,238 @@
+#include <SPI.h>
+#include <MFRC522.h>
+#include <ESP32Servo.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+// WiFi
+const char* ssid = "Hoichimi";
+const char* password = "12345678";
+
+// Server PHP
+const char* serverURL = "http://10.114.57.114/parking/logic.php";
+
+// ==== ESP32 Pin Definitions ====
+#define SS_PIN     5    
+#define RST_PIN    4    
+#define SERVO_PIN  2    
+#define BUZZER_PIN 15   
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+Servo servo;
+
+// ==== Số chỗ trống ====
+int carSlots = 5;     // Ô tô
+int bikeSlots = 8;   // Xe máy
+
+// Danh sách RFID đang gửi xe
+String parkedCars[5];
+String parkedBikes[8];
+
+unsigned long lastReadTime = 0;
+String lastRFID = "";
+const unsigned long debounceTime = 3000;
+
+void setup() {
+  Serial.begin(115200);
+  SPI.begin();
+  mfrc522.PCD_Init();
+  servo.attach(SERVO_PIN);
+  servo.write(0);
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Smart Parking");
+  lcd.setCursor(0, 1);
+  lcd.print("Connecting...");
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\n✅ WiFi connected!");
+  lcd.setCursor(0, 0);
+  lcd.print("WiFi Connected!");
+  delay(1000);
+  updateLCD();
+}
+
+void loop() {
+  if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) return;
+
+  String rfid = getRFID();
+  rfid.toUpperCase();
+
+  unsigned long now = millis();
+  if (rfid == lastRFID && now - lastReadTime < debounceTime) {
+    mfrc522.PICC_HaltA();
+    mfrc522.PCD_StopCrypto1();
+    return;
+  }
+
+  lastRFID = rfid;
+  lastReadTime = now;
+
+  Serial.println("📥 RFID: " + rfid);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("RFID: "+ rfid);
+ 
+
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    String checkData = "rfid=" + rfid + "&status=CHECK&vehicle_type=car";
+    int checkResponse = http.POST(checkData);
+
+    if (checkResponse > 0) {
+      String response = http.getString();
+      response.trim();
+      Serial.println("📤 Server: " + response);
+
+      String vehicleType = "car";
+      if (response.indexOf("motorbike") >= 0) vehicleType = "motorbike";
+
+      if (response.indexOf("VALID") >= 0) {
+        bool isParked = isRFIDParked(rfid, vehicleType);
+        
+        if (isParked) {
+          lcd.setCursor(0, 1);
+          lcd.print("See You Again!");
+          buzzBuzzer(300);
+          openGate();
+          
+          if (vehicleType == "car") carSlots++;
+          else bikeSlots++;
+
+          removeParkedRFID(rfid, vehicleType);
+          logAction(rfid, "out", vehicleType);
+        } else  {
+          bool hasSlot = (vehicleType == "car") ? (carSlots > 0) : (bikeSlots > 0);
+
+          if (hasSlot) {
+            lcd.setCursor(0, 1);
+            lcd.print("Welcome!");
+            buzzBuzzer(300);
+            openGate();
+
+            if (vehicleType == "car") carSlots--;
+            else bikeSlots--;
+
+            addParkedRFID(rfid, vehicleType);
+            logAction(rfid, "in", vehicleType);
+          } else {
+            lcd.setCursor(0, 1);
+            lcd.print("Full Slot!");
+            buzzBuzzer(2000);
+            logAction(rfid, "REJECT", vehicleType);
+          }
+        }
+      } else {
+        lcd.setCursor(0, 1);
+        lcd.print("❌ Invalid Card!");
+        buzzBuzzer(1000);
+      }
+    } else {
+      Serial.println("❌ Server check failed!");
+    }
+    http.end();
+  }
+
+  delay(1000);
+  updateLCD();
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
+}
+
+// ==== Helper Functions ====
+
+String getRFID() {
+  String rfid = "";
+  for (byte i = 0; i < mfrc522.uid.size; i++) {
+    if (mfrc522.uid.uidByte[i] < 0x10) rfid += "0";
+    rfid += String(mfrc522.uid.uidByte[i], HEX);
+  }
+  return rfid;
+}
+
+bool isRFIDParked(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+  for (int i = 0; i < size; i++) {
+    if (arr[i] == rfid) return true;
+  }
+  return false;
+}
+
+void addParkedRFID(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+  for (int i = 0; i < size; i++) {
+    if (arr[i] == "") {
+      arr[i] = rfid;
+      Serial.println("➕ Added " + type + " slot " + String(i));
+      return;
+    }
+  }
+}
+
+void removeParkedRFID(String rfid, String type) {
+  String* arr = (type == "car") ? parkedCars : parkedBikes;
+  int size = (type == "car") ? 5 : 8;
+  for (int i = 0; i < size; i++) {
+    if (arr[i] == rfid) {
+      arr[i] = "";
+      Serial.println("➖ Removed " + type + " slot " + String(i));
+      return;
+    }
+  }
+}
+
+void buzzBuzzer(unsigned int duration) {
+  digitalWrite(BUZZER_PIN, HIGH);
+  delay(duration);
+  digitalWrite(BUZZER_PIN, LOW);
+}
+
+void openGate() {
+  servo.write(90);
+  delay(2000);
+  servo.write(0);
+}
+
+void updateLCD() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Smart Parking");
+  lcd.setCursor(0, 1);
+  lcd.print("Oto:" + String(carSlots) + " XeMay:" + String(bikeSlots));
+}
+
+void logAction(String rfid, String status, String vehicleType) {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    String postData = "rfid=" + rfid + "&status=" + status + "&vehicle_type=" + vehicleType;
+    int response = http.POST(postData);
+
+    if (response > 0) {
+      String res = http.getString();
+      Serial.println("📤 Log sent: " + res);
+    } else {
+      Serial.println("❌ Log failed");
+    }
+    http.end();
+  }
+}

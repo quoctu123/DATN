@@ -1,0 +1,522 @@
+(PCB New_Project
+ (parser
+  (host_cad ARES)
+  (host_version 8.17 SP2)
+ )
+ (resolution mm 100000)
+ (unit mm)
+ (structure
+  (boundary (rect pcb -81.40080 -9.49080 19.65080 62.63080))
+  (boundary (path signal 0.10160 -81.35000 -9.44000 19.60000 -9.44000 19.60000 62.58000
+   -81.35000 62.58000 -81.35000 -9.44000))
+  (flip_style mirror_first)
+  (layer TOP (type signal) (direction horizontal))
+  (layer I1 (type signal) (direction off))
+  (layer I2 (type signal) (direction off))
+  (layer I3 (type signal) (direction off))
+  (layer I4 (type signal) (direction off))
+  (layer I5 (type signal) (direction off))
+  (layer I6 (type signal) (direction off))
+  (layer I7 (type signal) (direction off))
+  (layer I8 (type signal) (direction off))
+  (layer I9 (type signal) (direction off))
+  (layer I10 (type signal) (direction off))
+  (layer I11 (type signal) (direction off))
+  (layer I12 (type signal) (direction off))
+  (layer I13 (type signal) (direction off))
+  (layer I14 (type signal) (direction off))
+  (layer BOT (type signal) (direction orthogonal))
+  (grid via  1.01600)
+  (grid wire 1.01600)
+  (control
+   (via_at_smd off)
+   (off_grid on)
+  )
+  (via
+   $VIA#0_SIGNAL
+   (spare
+    $VIA#0_POWER
+   )
+  )
+  (rule
+   (width 0.30480)
+   (clearance 0.38100)
+   (clearance 0.25400 (type wire_via))
+   (clearance 0.25400 (type wire_smd))
+   (clearance 0.25400 (type wire_pin))
+   (clearance 0.25400 (type wire_wire))
+   (clearance 0.25400 (type via_pin))
+   (clearance 0.25400 (type via_via))
+   (clearance 0.25400 (type via_smd))
+  )
+ )
+ (placement
+  (component "SIL-156-02_9V" (place 9V 14.91240 37.70000 front 180))
+  (component "CONN-SIL2_J1" (place J1 13.49000 50.20000 front 180))
+  (component ESP32_E1 (place E1 -17.78000 7.62000 front -90))
+  (component "CONN-SIL8_RFID_1" (place RFID_1 -71.12000 40.64000 front 0))
+  (component "CONN-SIL8_RFID_2" (place RFID_2 -71.12000 50.80000 front 0))
+  (component "CONN-SIL2_BUZ2" (place BUZ2 -2.54000 7.62000 front 180))
+  (component "CONN-SIL3_RELAY_1" (place RELAY_1 -3.81000 43.18000 front 0))
+  (component "CONN-SIL3_RELAY_2" (place RELAY_2 -3.81000 27.94000 front 0))
+  (component 78XX_U1 (place U1 -3.81000 15.24000 front 0))
+  (component "CONN-SIL4_LCD_I2C" (place LCD_I2C -20.32000 -3.81000 front 180))
+  (component "CONN-SIL2_5V_RASPBERRY" (place 5V_RASPBERRY 6.35000 21.59000 back 0))
+  (component "CONN-SIL2_J2" (place J2 -1.27000 50.80000 front 0))
+ )
+ (library
+  (image "SIL-156-02_9V" (side front)
+   (outline (rect TOP -2.46380 -2.92100 6.52780 4.80060))
+   (pin PS0 (rotate 0) 0 0.00000 0.00000)
+   (pin PS0 (rotate 0) 1 3.96240 0.00000)
+  )
+  (image "CONN-SIL2_J1" (side front)
+   (outline (rect TOP -1.32080 -1.32080 3.86080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image ESP32_E1 (side front)
+   (outline (rect TOP -47.41080 -26.52730 6.49080 1.57430))
+   (pin PS2 (rotate 0) 0 0.00000 0.00000)
+   (pin PS2 (rotate 0) 1 -2.54000 0.00000)
+   (pin PS2 (rotate 0) 2 -5.06000 0.00000)
+   (pin PS2 (rotate 0) 3 -7.62000 0.00000)
+   (pin PS2 (rotate 0) 4 -10.16000 0.00000)
+   (pin PS2 (rotate 0) 5 -12.70000 0.00000)
+   (pin PS2 (rotate 0) 6 -15.24000 0.00000)
+   (pin PS2 (rotate 0) 7 -17.76000 0.00000)
+   (pin PS2 (rotate 0) 8 -20.32000 0.00000)
+   (pin PS2 (rotate 0) 9 -22.86000 0.00000)
+   (pin PS2 (rotate 0) 10 -25.40000 0.00000)
+   (pin PS2 (rotate 0) 11 -27.94000 0.00000)
+   (pin PS2 (rotate 0) 12 -30.48000 0.00000)
+   (pin PS2 (rotate 0) 13 -33.02000 0.00000)
+   (pin PS2 (rotate 0) 14 -35.56000 0.00000)
+   (pin PS2 (rotate 0) 15 -0.02000 -25.00000)
+   (pin PS2 (rotate 0) 16 -2.56000 -25.00000)
+   (pin PS2 (rotate 0) 17 -5.08000 -25.00000)
+   (pin PS2 (rotate 0) 18 -7.64000 -25.00000)
+   (pin PS2 (rotate 0) 19 -10.18000 -25.00000)
+   (pin PS2 (rotate 0) 20 -12.72000 -25.00000)
+   (pin PS2 (rotate 0) 21 -15.26000 -25.00000)
+   (pin PS2 (rotate 0) 22 -17.78000 -25.00000)
+   (pin PS2 (rotate 0) 23 -20.34000 -25.00000)
+   (pin PS2 (rotate 0) 24 -22.88000 -25.00000)
+   (pin PS2 (rotate 0) 25 -25.42000 -25.00000)
+   (pin PS2 (rotate 0) 26 -27.96000 -25.00000)
+   (pin PS2 (rotate 0) 27 -30.50000 -25.00000)
+   (pin PS2 (rotate 0) 28 -33.04000 -25.00000)
+   (pin PS2 (rotate 0) 29 -35.58000 -25.00000)
+  )
+  (image "CONN-SIL8_RFID_1" (side front)
+   (outline (rect TOP -1.32080 -1.32080 19.10080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+   (pin PS1 (rotate 0) 2 5.08000 0.00000)
+   (pin PS1 (rotate 0) 3 7.62000 0.00000)
+   (pin PS1 (rotate 0) 4 10.16000 0.00000)
+   (pin PS1 (rotate 0) 5 12.70000 0.00000)
+   (pin PS1 (rotate 0) 6 15.24000 0.00000)
+   (pin PS1 (rotate 0) 7 17.78000 0.00000)
+  )
+  (image "CONN-SIL8_RFID_2" (side front)
+   (outline (rect TOP -1.32080 -1.32080 19.10080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+   (pin PS1 (rotate 0) 2 5.08000 0.00000)
+   (pin PS1 (rotate 0) 3 7.62000 0.00000)
+   (pin PS1 (rotate 0) 4 10.16000 0.00000)
+   (pin PS1 (rotate 0) 5 12.70000 0.00000)
+   (pin PS1 (rotate 0) 6 15.24000 0.00000)
+   (pin PS1 (rotate 0) 7 17.78000 0.00000)
+  )
+  (image "CONN-SIL2_BUZ2" (side front)
+   (outline (rect TOP -1.32080 -1.32080 3.86080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image "CONN-SIL3_RELAY_1" (side front)
+   (outline (rect TOP -1.32080 -1.32080 6.40080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+   (pin PS1 (rotate 0) 2 5.08000 0.00000)
+  )
+  (image "CONN-SIL3_RELAY_2" (side front)
+   (outline (rect TOP -1.32080 -1.32080 6.40080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+   (pin PS1 (rotate 0) 2 5.08000 0.00000)
+  )
+  (image 78XX_U1 (side front)
+   (outline (rect TOP -3.86080 -2.15900 3.86080 2.59080))
+   (pin PS3 (rotate 180) 0 -2.54000 0.00000)
+   (pin PS4 (rotate 180) 1 0.00000 0.00000)
+   (pin PS4 (rotate 180) 2 2.54000 0.00000)
+  )
+  (image "CONN-SIL4_LCD_I2C" (side front)
+   (outline (rect TOP -1.32080 -1.32080 8.94080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+   (pin PS1 (rotate 0) 2 5.08000 0.00000)
+   (pin PS1 (rotate 0) 3 7.62000 0.00000)
+  )
+  (image "CONN-SIL2_5V_RASPBERRY" (side back)
+   (outline (rect TOP -1.32080 -1.32080 3.86080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image "CONN-SIL2_J2" (side front)
+   (outline (rect TOP -1.32080 -1.32080 3.86080 1.32080))
+   (pin PS1 (rotate 0) 0 0.00000 0.00000)
+   (pin PS1 (rotate 0) 1 2.54000 0.00000)
+  )
+  (padstack PS0 (absolute on)
+   (shape (circle TOP 3.04800 0 0))
+   (shape (circle I1 3.04800 0 0))
+   (shape (circle I2 3.04800 0 0))
+   (shape (circle I3 3.04800 0 0))
+   (shape (circle I4 3.04800 0 0))
+   (shape (circle I5 3.04800 0 0))
+   (shape (circle I6 3.04800 0 0))
+   (shape (circle I7 3.04800 0 0))
+   (shape (circle I8 3.04800 0 0))
+   (shape (circle I9 3.04800 0 0))
+   (shape (circle I10 3.04800 0 0))
+   (shape (circle I11 3.04800 0 0))
+   (shape (circle I12 3.04800 0 0))
+   (shape (circle I13 3.04800 0 0))
+   (shape (circle I14 3.04800 0 0))
+   (shape (circle BOT 3.04800 0 0))
+  )
+  (padstack PS1 (absolute on)
+   (shape (rect TOP -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I1 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I2 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I3 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I4 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I5 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I6 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I7 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I8 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I9 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I10 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I11 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I12 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I13 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I14 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect BOT -1.01600 -1.01600 1.01600 1.01600))
+  )
+  (padstack PS2 (absolute on)
+   (shape (rect TOP -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I1 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I2 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I3 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I4 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I5 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I6 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I7 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I8 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I9 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I10 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I11 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I12 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I13 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect I14 -0.70000 -1.27000 0.70000 1.27000))
+   (shape (rect BOT -0.70000 -1.27000 0.70000 1.27000))
+  )
+  (padstack PS3 (absolute on)
+   (shape (rect TOP -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I1 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I2 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I3 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I4 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I5 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I6 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I7 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I8 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I9 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I10 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I11 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I12 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I13 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect I14 -1.01600 -1.01600 1.01600 1.01600))
+   (shape (rect BOT -1.01600 -1.01600 1.01600 1.01600))
+  )
+  (padstack PS4 (absolute on)
+   (shape (circle TOP 2.03200 0 0))
+   (shape (circle I1 2.03200 0 0))
+   (shape (circle I2 2.03200 0 0))
+   (shape (circle I3 2.03200 0 0))
+   (shape (circle I4 2.03200 0 0))
+   (shape (circle I5 2.03200 0 0))
+   (shape (circle I6 2.03200 0 0))
+   (shape (circle I7 2.03200 0 0))
+   (shape (circle I8 2.03200 0 0))
+   (shape (circle I9 2.03200 0 0))
+   (shape (circle I10 2.03200 0 0))
+   (shape (circle I11 2.03200 0 0))
+   (shape (circle I12 2.03200 0 0))
+   (shape (circle I13 2.03200 0 0))
+   (shape (circle I14 2.03200 0 0))
+   (shape (circle BOT 2.03200 0 0))
+  )
+  (padstack $VIA#0_SIGNAL (absolute on)
+   (shape (circle TOP 1.52400 0 0))
+   (shape (circle I1 1.52400 0 0))
+   (shape (circle I2 1.52400 0 0))
+   (shape (circle I3 1.52400 0 0))
+   (shape (circle I4 1.52400 0 0))
+   (shape (circle I5 1.52400 0 0))
+   (shape (circle I6 1.52400 0 0))
+   (shape (circle I7 1.52400 0 0))
+   (shape (circle I8 1.52400 0 0))
+   (shape (circle I9 1.52400 0 0))
+   (shape (circle I10 1.52400 0 0))
+   (shape (circle I11 1.52400 0 0))
+   (shape (circle I12 1.52400 0 0))
+   (shape (circle I13 1.52400 0 0))
+   (shape (circle I14 1.52400 0 0))
+   (shape (circle BOT 1.52400 0 0))
+  )
+  (padstack $VIA#0_POWER (absolute on)
+   (shape (circle TOP 1.52400 0 0))
+   (shape (circle I1 1.52400 0 0))
+   (shape (circle I2 1.52400 0 0))
+   (shape (circle I3 1.52400 0 0))
+   (shape (circle I4 1.52400 0 0))
+   (shape (circle I5 1.52400 0 0))
+   (shape (circle I6 1.52400 0 0))
+   (shape (circle I7 1.52400 0 0))
+   (shape (circle I8 1.52400 0 0))
+   (shape (circle I9 1.52400 0 0))
+   (shape (circle I10 1.52400 0 0))
+   (shape (circle I11 1.52400 0 0))
+   (shape (circle I12 1.52400 0 0))
+   (shape (circle I13 1.52400 0 0))
+   (shape (circle I14 1.52400 0 0))
+   (shape (circle BOT 1.52400 0 0))
+  )
+ )
+ (network
+  (net "#00060"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins 9V-0 J1-0)
+  )
+  (net "#00061"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins 9V-1 J1-1)
+  )
+  (net "3V3"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-29 RFID_1-7 RFID_2-7)
+  )
+  (net "5V"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-14 RELAY_1-1 RELAY_2-1 U1-0 LCD_I2C-1 J2-0)
+  )
+  (net "5V_RASP"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins U1-2 5V_RASPBERRY-0)
+  )
+  (net "D12"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-11 RFID_2-0)
+  )
+  (net "D13"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-12)
+  )
+  (net "D14"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-10)
+  )
+  (net "D18"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-21 RFID_1-1 RFID_2-1)
+  )
+  (net "D19"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-20 RFID_1-3 RFID_2-3)
+  )
+  (net "D23"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-15 RFID_1-2 RFID_2-2)
+  )
+  (net "D26"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-8 RELAY_2-0)
+  )
+  (net "D27"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-9 RFID_2-6)
+  )
+  (net "D32"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-5 BUZ2-1)
+  )
+  (net "D33"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-6 RELAY_1-0)
+  )
+  (net "D4"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-25 RFID_1-6)
+  )
+  (net "D5"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-22 RFID_1-0)
+  )
+  (net "GND"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+    (pins E1-13 E1-28 RFID_1-5 RFID_2-5 BUZ2-0 RELAY_1-2 RELAY_2-2 U1-1 LCD_I2C-0 5V_RASPBERRY-1
+    J2-1)
+  )
+  (net "SCL"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-16 LCD_I2C-3)
+  )
+  (net "SDA"
+   (circuit
+    (use_layer BOT)
+    (use_via
+     $VIA#0_SIGNAL
+    )
+   )
+   (pins E1-19 LCD_I2C-2)
+  )
+  (class SIGNAL
+   "#00060"
+   "#00061"
+   "3V3"
+   "5V"
+   "5V_RASP"
+   "D12"
+   "D13"
+   "D14"
+   "D18"
+   "D19"
+   "D23"
+   "D26"
+   "D27"
+   "D32"
+   "D33"
+   "D4"
+   "D5"
+   "GND"
+   "SCL"
+   "SDA"
+   "{NC}"
+   "{VOID}"
+    (layer_rule BOT
+    (rule
+     (width 1.01600)
+     (clearance 1.01600)
+     (clearance 0.25400 (type wire_via))
+     (clearance 0.25400 (type wire_smd))
+     (clearance 0.25400 (type wire_pin))
+     (clearance 1.01600 (type wire_wire))
+     (clearance 0.25400 (type via_pin))
+     (clearance 0.25400 (type via_via))
+     (clearance 0.25400 (type via_smd))
+    )
+   )
+  )
+ )
+ (wiring
+ )
+)

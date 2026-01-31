@@ -1,0 +1,268 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.9">
+  <diagram id="2gD6i7k4Fm8pP0lP3xYh" name="Smart Parking Flowchart Optimized">
+    <mxGraphModel dx="1236" dy="569" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-1" parent="1" style="swimlane;startSize=20;fillColor=#fffbe5;strokeColor=#f0c300;fontColor=#000000;" value="Vehicle Entry Lane (Gate 1)" vertex="1">
+          <mxGeometry height="620" width="610" x="90" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-1" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="B">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-9" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="C">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="90" />
+              <mxPoint x="170" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;" value="START" vertex="1">
+          <mxGeometry height="40" width="100" x="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-10" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="B" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="425" y="180" />
+              <mxPoint x="300" y="180" />
+            </Array>
+            <mxPoint x="300" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Camera 1: Vehicle Detection Trigger" vertex="1">
+          <mxGeometry height="50" width="130" x="360" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-3" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="180" />
+              <mxPoint x="300" y="180" />
+            </Array>
+            <mxPoint x="170" y="150" as="sourcePoint" />
+            <mxPoint x="300" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="ESP32: Read RFID (RC522)" vertex="1">
+          <mxGeometry height="50" width="130" x="105" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-12" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="D" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="E">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="270" />
+              <mxPoint x="295" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#d81b60;" value="Send RFID Code to PHP Server" vertex="1">
+          <mxGeometry height="50" width="130" x="235" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="E" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ffb300;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;Server: Is RFID Valid AND Slot Available?" vertex="1">
+          <mxGeometry height="80" width="170" x="210" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-6" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="F" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="R">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Long BUZZER, LCD: Invalid/Full Slot" vertex="1">
+          <mxGeometry height="70" width="150" x="30" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-7" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="R" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="pwAUg28zCuM93chKnyXV-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#ffdddd;strokeColor=#ff0000;" value="&#xa;Vehicle Blocked, Stop Process&#xa;&#xa;" vertex="1">
+          <mxGeometry height="50" width="130" x="40" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-8" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="G" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="H">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="G" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="&lt;br&gt;&lt;div&gt;Server: Determine User/Vehicle Type, Send OK&lt;br&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="410" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-9" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="H" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="I">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="ESP32: Open Barrier, Short BUZZER, LCD: Welcome" vertex="1">
+          <mxGeometry height="50" width="160" x="410" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-10" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="I" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="J">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-12" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="I" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="L">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="I" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="LPR Camera: Capture License Plate, Send for Processing" vertex="1">
+          <mxGeometry height="50" width="160" x="410" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-19" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="J" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qgecYhf6V3JMkHGCwpdz-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="J" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Computer: Extract License Plate (Python/YOLO)" vertex="1">
+          <mxGeometry height="50" width="170" x="205" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="L" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#f9fbe7;strokeColor=#afb42b;" value="Server: Write LOG (MySQL)" vertex="1">
+          <mxGeometry height="90" width="120" x="430" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-40" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="E" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=bottom;exitX=0;exitY=0.5;" target="F" value="NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-41" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-1" source="E" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=bottom;exitX=1;exitY=0.5;" target="G" value="YES">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pwAUg28zCuM93chKnyXV-5" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#ffdddd;strokeColor=#ff0000;" value="Server: Log into Invalid Log" vertex="1">
+          <mxGeometry height="50" width="130" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-18" parent="tq-Lw6v85Q89Gg4j_K6c-1" style="rounded=0;whiteSpace=wrap;html=1;" value="Send License Plate + Entry Time to Server" vertex="1">
+          <mxGeometry height="60" width="180" x="200" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-51" parent="1" style="swimlane;startSize=20;fillColor=#ffe0b2;strokeColor=#fb8c00;fontColor=#000000;" value="Vehicle Exit Lane (Gate 2)" vertex="1">
+          <mxGeometry height="630" width="600" x="110" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="N" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="&lt;div&gt;Vehicle approaches exit gate&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="140" x="220" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-22" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="O1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qgecYhf6V3JMkHGCwpdz-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="180" />
+              <mxPoint x="300" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O1" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Camera 2 LPR: Capture &amp;amp; Send License Plate" vertex="1">
+          <mxGeometry height="50" width="160" x="120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-23" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="O2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qgecYhf6V3JMkHGCwpdz-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="180" />
+              <mxPoint x="300" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O2" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="ESP32: Rescan RFID" vertex="1">
+          <mxGeometry height="50" width="140" x="310" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-2" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="290" as="sourcePoint" />
+            <mxPoint x="300" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ffb300;" value="Server: Compare License Plate &amp;amp; RFID Match?" vertex="1">
+          <mxGeometry height="70" width="150" x="225" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="P-F4BBbkKSLclUrcW6aX-2" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="S" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="T">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Buzzer Long, LCD: Invalid Exit" vertex="1">
+          <mxGeometry height="70" width="150" x="30" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="T" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#ffdddd;strokeColor=#ff0000;" value="Vehicle Blocked, Stop Process" vertex="1">
+          <mxGeometry height="50" width="130" x="40" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-30" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="U" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qgecYhf6V3JMkHGCwpdz-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Server: Calculate Fee (if Visitor) &amp;amp; Update Card Status" vertex="1">
+          <mxGeometry height="50" width="170" x="410" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="W" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Servo Open Barrier, Buzzer, LCD: See You&amp;nbsp;" vertex="1">
+          <mxGeometry height="50" width="160" x="205" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-5" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="X" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="W">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="475" />
+              <mxPoint x="390" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-29" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="X" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Z">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="493" y="550" />
+              <mxPoint x="290" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#f9fbe7;strokeColor=#afb42b;" value="Server: Write into LOG (Exit Time, Fee) to MySQL" vertex="1">
+          <mxGeometry height="70" width="160" x="410" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-58" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="Q" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=bottom;exitX=0;exitY=0.5;" target="S" value="NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P-F4BBbkKSLclUrcW6aX-9" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="N" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="O1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="80" />
+            </Array>
+            <mxPoint x="240" y="90" as="sourcePoint" />
+            <mxPoint x="-70" y="-130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P-F4BBbkKSLclUrcW6aX-11" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="N" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="O2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="80" />
+            </Array>
+            <mxPoint x="380" y="80" as="sourcePoint" />
+            <mxPoint x="550" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P-F4BBbkKSLclUrcW6aX-17" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="Q" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="U" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="500" y="450" as="sourcePoint" />
+            <mxPoint x="550" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Z" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffccbc;strokeColor=#d32f2f;" value="END" vertex="1">
+          <mxGeometry height="40" width="100" x="240" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-3" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="T" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="550" />
+              <mxPoint x="290" y="550" />
+            </Array>
+            <mxPoint x="290" y="569.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-31" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="qgecYhf6V3JMkHGCwpdz-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Q">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-21" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="rounded=0;whiteSpace=wrap;html=1;" value="Send LPR + RFID to Server" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-24" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="YES" vertex="1">
+          <mxGeometry height="30" width="60" x="360" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-28" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-51" source="qgecYhf6V3JMkHGCwpdz-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="X">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="430" />
+              <mxPoint x="490" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qgecYhf6V3JMkHGCwpdz-25" parent="tq-Lw6v85Q89Gg4j_K6c-51" style="rounded=0;whiteSpace=wrap;html=1;" value="Feedback Valid + Fee (if any) Back to ESP32" vertex="1">
+          <mxGeometry height="60" width="140" x="425" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-67" parent="1" style="swimlane;startSize=20;fillColor=#eeccff;strokeColor=#9c27b0;" value="WEB QUẢN LÝ" vertex="1">
+          <mxGeometry height="180" width="200" x="750" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Z1" parent="tq-Lw6v85Q89Gg4j_K6c-67" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;" value="Web Quản trị Viên" vertex="1">
+          <mxGeometry height="40" width="100" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2" parent="tq-Lw6v85Q89Gg4j_K6c-67" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#d81b60;" value="Truy vấn MySQL: Danh sách, Doanh thu, Thống kê" vertex="1">
+          <mxGeometry height="70" width="130" x="35" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="tq-Lw6v85Q89Gg4j_K6c-68" edge="1" parent="tq-Lw6v85Q89Gg4j_K6c-67" source="Z1" style="endArrow=none;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="Z2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="100" y="80" as="sourcePoint" />
+            <mxPoint x="100" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

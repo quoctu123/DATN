@@ -1,0 +1,141 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.9">
+  <diagram name="Lưu đồ thuật toán chi tiết" id="0">
+    <mxGraphModel dx="75803" dy="50899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-26" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="scan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="START" vertex="1">
+          <mxGeometry height="60" width="120" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-1" edge="1" parent="1" source="scan" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="scan" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="RFID Card Scanning" vertex="1">
+          <mxGeometry height="60" width="160" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-2" edge="1" parent="1" source="check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="invalid" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-3" edge="1" parent="1" source="check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="openGate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-15" connectable="0" parent="q2XFQJHTTTM3AzWBiW5a-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="YES" vertex="1">
+          <mxGeometry relative="1" x="-0.5349" y="-1" as="geometry">
+            <mxPoint x="-9" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-27" edge="1" parent="1" source="check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="capture">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="check" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Valid Card?" vertex="1">
+          <mxGeometry height="80" width="160" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="invalid" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ff9999;" value="Error Notification and Logging Invalid Cards" vertex="1">
+          <mxGeometry height="60" width="200" x="260" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="openGate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;fontStyle=0" value="Gate Control (Servo) and Buzzer Alarm" vertex="1">
+          <mxGeometry height="60" width="160" x="-170" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="capture" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="Camera Capture and License Plate Storage" vertex="1">
+          <mxGeometry height="60" width="200" x="20" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="0udjObhusbxSUE73OxxT-1" edge="1" parent="1" source="ocr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="q2XFQJHTTTM3AzWBiW5a-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ocr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="Vehicle Exit" vertex="1">
+          <mxGeometry height="60" width="140" x="880" y="-20" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-9" edge="1" parent="1" source="match" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="q2XFQJHTTTM3AzWBiW5a-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-17" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="resident" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="290" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="match" parent="1" style="rhombus;whiteSpace=wrap;html=1;fontStyle=0" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;License Plate Matching with Entry Record" vertex="1">
+          <mxGeometry height="105" width="220" x="840" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-11" edge="1" parent="1" source="resident" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="q2XFQJHTTTM3AzWBiW5a-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-28" edge="1" parent="1" source="resident" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="calculateFee">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="350" />
+              <mxPoint x="830" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="resident" parent="1" style="rhombus;whiteSpace=wrap;html=1;fontStyle=0" value="Resident Verification?" vertex="1">
+          <mxGeometry height="80" width="200" x="850" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-22" edge="1" parent="1" source="calculateFee" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="displayFee" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="calculateFee" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="Hourly Fee Calculation (for Visitors)" vertex="1">
+          <mxGeometry height="60" width="260" x="540" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-23" edge="1" parent="1" source="displayFee" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="logEntryExit" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="displayFee" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="Display Fee" vertex="1">
+          <mxGeometry height="60" width="140" x="600" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-24" edge="1" parent="1" source="logEntryExit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="end" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="logEntryExit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="Log Time, RFID, License Plate, Fee" vertex="1">
+          <mxGeometry height="55" width="260" x="540" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontStyle=0" value="END" vertex="1">
+          <mxGeometry height="60" width="120" x="610" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="endArrow=block;" target="scan" />
+        <mxCell id="e2" edge="1" parent="1" source="scan" style="endArrow=block;" target="check" />
+        <mxCell id="e3" edge="1" parent="1" source="check" style="endArrow=block;" target="invalid" value="No" />
+        <mxCell id="e4" edge="1" parent="1" source="check" style="endArrow=block;" target="openGate" value="Yes" />
+        <mxCell id="e5" edge="1" parent="1" source="openGate" style="endArrow=block;" target="capture" />
+        <mxCell id="e6" edge="1" parent="1" source="capture" style="endArrow=block;" target="ocr" />
+        <mxCell id="e7" edge="1" parent="1" source="ocr" style="endArrow=block;" target="match" />
+        <mxCell id="e8" edge="1" parent="1" source="match" style="endArrow=block;" target="invalid" value="No" />
+        <mxCell id="e9" edge="1" parent="1" source="match" style="endArrow=block;" target="resident" value="Yes" />
+        <mxCell id="e10" edge="1" parent="1" source="resident" style="endArrow=block;" target="calculateFee" value="No" />
+        <mxCell id="e11" edge="1" parent="1" source="resident" style="endArrow=block;" target="logEntryExit" value="Yes" />
+        <mxCell id="e12" edge="1" parent="1" source="calculateFee" style="endArrow=block;" target="displayFee" />
+        <mxCell id="e13" edge="1" parent="1" source="displayFee" style="endArrow=block;" target="logEntryExit" />
+        <mxCell id="e14" edge="1" parent="1" source="logEntryExit" style="endArrow=block;" target="end" />
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-8" parent="1" style="whiteSpace=wrap;html=1;fontStyle=0;" value="Alerts and Logging into &lt;code data-start=&quot;26&quot; data-end=&quot;39&quot;&gt;Invalid_log&lt;/code&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="1150" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-10" parent="1" style="whiteSpace=wrap;html=1;fontStyle=0;" value="Gate Opening and Logging" vertex="1">
+          <mxGeometry height="60" width="120" x="1150" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="200" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="1070" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="YES" vertex="1">
+          <mxGeometry height="30" width="60" x="940" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="800" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="YES" vertex="1">
+          <mxGeometry height="30" width="60" x="1070" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-32" edge="1" parent="1" source="q2XFQJHTTTM3AzWBiW5a-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="match">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q2XFQJHTTTM3AzWBiW5a-30" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" value="License Plate Camera Capture" vertex="1">
+          <mxGeometry height="60" width="200" x="850" y="95" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

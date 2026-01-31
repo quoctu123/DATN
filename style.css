@@ -1,0 +1,260 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
+  min-height: 100vh;
+  padding: 30px;
+  color: #333;
+}
+
+/* Layout chính */
+.container {
+  max-width: 90%;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề và header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #007bff;
+}
+
+.logout {
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logout:hover {
+  text-decoration: underline;
+}
+
+/* Form và input */
+form {
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+input[type="submit"] {
+  padding: 10px 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Nút xóa */
+.delete-button {
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  text-decoration: underline;
+}
+
+/* Trang đăng nhập */
+body.login-page {
+  background: linear-gradient(to right, #74ebd5, #9face6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  margin-left: 18px;
+  width: 90%;
+}
+
+.login-box input[type="submit"] {
+  width: 90%;
+  height: 50px;
+  margin-top: 10px;
+  margin-left: 18px;
+}
+
+.error {
+  color: #dc3545;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="submit"] {
+    width: 100%;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  section h3 {
+    margin-top: 30px;
+  }
+}
+
+#trafficChart {
+  width: 80%;
+  height: 600px !important;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-export {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: 3px;
+}
+
+.btn-export:hover {
+  background-color: #052e5a;
+  color: #ffc107;
+}
+
+.scrollable-table {
+  max-height: 400px; /* Bạn có thể điều chỉnh chiều cao */
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.invalid-log-table {
+  width: 70%;
+  margin: 10px auto;
+  border: 1px solid #cc0000;
+  background-color: #fff5f5;
+  font-size: 16px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.2);
+}
+
+.invalid-log-table th {
+  background-color: red;
+  color: white;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+
+.invalid-log-table td {
+  padding: 6px 10px;
+  text-align: center;
+  border-top: 1px solid #cc0000;
+}
+.H2TK {
+  margin-left: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.search {
+  margin-left: 100px;
+}
